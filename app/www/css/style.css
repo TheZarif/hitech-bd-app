@@ -1,0 +1,9 @@
+/* Empty. Add your own CSS if you like */
+@font-face{
+    font-family: "Siyamrupali";
+    src: url("../fonts/Siyamrupali.ttf");
+}
+
+body {
+    font-family: "Siyamrupali", serif;
+}
