@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
 
-    .run(function ($ionicPlatform) {
+    .run(function ($ionicPlatform, $http) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -18,6 +18,28 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 StatusBar.styleDefault();
             }
         });
+
+        if (typeof(Storage) !== "undefined") {
+            if (ifDataNotSet) {
+                $http.post('http://api.national500apps.com/index.php?r=apiMenu/Getmenu', {'app_id': '140'})
+                    .success(function (response) {
+                        alert("successfully retrieved data");
+                        console.log(response);
+                        window.localStorage.setItem('menu', JSON.stringify(response));
+                        setDataSet();
+                    }).error(function (response) {
+                        alert("Could not retrieve data from server" + response);
+                    })
+            }
+        }
+
+        function ifDataNotSet(){
+            return window.localStorage.getItem('dataIsSet') === null;
+        }
+
+        function setDataSet(){
+            window.localStorage.setItem('dataIsSet', 'true');
+        }
     })
 
     .config(function ($stateProvider, $urlRouterProvider) {

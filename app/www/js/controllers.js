@@ -39,7 +39,8 @@ angular.module('starter.controllers', [])
     })
 
     .controller('ProjectsCtrl', function ($scope) {
-
+        console.log(window.localStorage.getItem('menu'));
+        $scope.htmlContent = window.localStorage['menu'][1];
     })
 
     .controller('ProjectDetailsCtrl', function ($scope) {
