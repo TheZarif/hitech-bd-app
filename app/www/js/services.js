@@ -3,7 +3,7 @@
  */
 angular.module('starter.services', [])
 
-    .service('ContentService', function ($http) {
+    .service('ContentService', function ($http, $window) {
         this.url = 'http://api.national500apps.com/index.php?r=apiMenu/';
         this.appId = 140;
 
@@ -52,7 +52,6 @@ angular.module('starter.services', [])
                         that.getSubMenu(menuItems[i].menu_id);
                     }
                 })
-
         }
     });
 

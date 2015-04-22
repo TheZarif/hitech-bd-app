@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-    .run(function ($ionicPlatform, $http) {
+    .run(function ($ionicPlatform, $http, ContentService) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -19,13 +19,20 @@ angular.module('starter', ['ionic', 'starter.controllers'])
             }
         });
 
-        if (window.localStorage.getItem('htpIsSet') === null) {
-            $http.post('http://api.national500apps.com/index.php?r=apiMenu/Getmenu', {'app_id': '140'})
-                .success(function (response) {
-                    alert(response);
-                }).error(function (response) {
-                    alert("Could not retrieve data from server" + response);
-                })
+        if (typeof(Storage) !== "undefined") {
+            if (ifDataNotSet()) {
+                ContentService.update();
+                console.log("Data updated");
+                setDataSet();
+            }
+        }
+
+        function ifDataNotSet(){
+            return window.localStorage.getItem('dataIsSet') === null;
+        }
+
+        function setDataSet(){
+            window.localStorage.setItem('dataIsSet', 'true');
         }
     })
 
@@ -37,6 +44,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 abstract: true,
                 templateUrl: "templates/menu.html",
                 controller: 'AppCtrl'
+            })
+
+            .state('app.submenus', {
+                url: "/submenus/:menuId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/submenus.html",
+                        controller: "MenuContentCtrl"
+                    }
+                }
+            })
+
+            .state('app.content', {
+                url: "/content",
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/content.html',
+                        controller: 'ContentController'
+                    }
+                }
             })
 
             .state('app.about', {
@@ -78,14 +105,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 }
             })
 
-            .state('app.browse', {
-                url: "/browse",
-                views: {
-                    'menuContent': {
-                        templateUrl: "templates/browse.html"
-                    }
-                }
-            })
             .state('app.playlists', {
                 url: "/playlists",
                 views: {
@@ -106,5 +125,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 }
             });
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/playlists');
+        $urlRouterProvider.otherwise('/app/content');
     });
