@@ -1,0 +1,9 @@
+<ion-view view-title="{{menuItem.menu_name}}">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="subMenuItem in subMenuItems" ng-click="selectItem(subMenuItem)" >
+                {{subMenuItem.submenu_name}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

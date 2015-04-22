@@ -1,36 +1,31 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
-        // Form data for the login modal
-        $scope.loginData = {};
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, ContentService) {
+        $scope.menuItems = JSON.parse(window.localStorage.getItem('menu'));
+        $scope.update = function () {
+            ContentService.update();
+        }
 
-        // Create the login modal that we will use later
-        $ionicModal.fromTemplateUrl('templates/login.html', {
-            scope: $scope
-        }).then(function (modal) {
-            $scope.modal = modal;
-        });
+    })
 
-        // Triggered in the login modal to close it
-        $scope.closeLogin = function () {
-            $scope.modal.hide();
-        };
+    .controller('MenuContentCtrl', function ($scope, $stateParams, ContentService, $location) {
 
-        // Open the login modal
-        $scope.login = function () {
-            $scope.modal.show();
-        };
+        $scope.selectItem = function (item) {
+            ContentService.setSelectedItem(item);
+            $location.path("app/content");
+        }
 
-        // Perform the login action when the user submits the login form
-        $scope.doLogin = function () {
-            console.log('Doing login', $scope.loginData);
+        $scope.menuId = $stateParams.menuId;
+        $scope.menuItem = ContentService.getMenuItem($scope.menuId);
+        console.log($scope.menuItem)
+        if($scope.menuItem.has_submenu==0){
+            $scope.selectItem($scope.menuItem);
+        }
+        $scope.subMenuItems = JSON.parse(window.localStorage.getItem('submenu-' + $scope.menuId));
+    })
 
-            // Simulate a login delay. Remove this and replace with your login
-            // code if using a login system
-            $timeout(function () {
-                $scope.closeLogin();
-            }, 1000);
-        };
+    .controller('ContentController', function ($scope, ContentService) {
+        $scope.contentItem = ContentService.selectedItem;
     })
 
     .controller('AboutCtrl', function ($scope) {
@@ -48,6 +43,9 @@ angular.module('starter.controllers', [])
     })
 
     .controller('PlaylistsCtrl', function ($scope) {
+        $scope.menuItems = JSON.parse(window.localStorage.getItem('menu'));
+        console.log(window.localStorage.getItem('menu'))
+
         $scope.playlists = [
             {title: 'Reggae', id: 1},
             {title: 'Chill', id: 2},
@@ -60,3 +58,5 @@ angular.module('starter.controllers', [])
 
     .controller('PlaylistCtrl', function ($scope, $stateParams) {
     });
+
+
