@@ -18,12 +18,14 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
+        <ion-refresher
+                pulling-text="আপডেট করতে নিচে টানুন..."
+                on-refresh="update()">
+        </ion-refresher>
         <ion-item ng-if="menuItem.active!=0" ng-repeat="menuItem in menuItems" nav-clear menu-close href="#/app/submenus/{{menuItem.menu_id}}">
           {{menuItem.menu_name}}
         </ion-item>
-        <ion-item ng-click="update()">
-          আপডেট
-        </ion-item>
+
       </ion-list>
     </ion-content>
   </ion-side-menu>

@@ -4,6 +4,7 @@
 angular.module('starter.services', [])
 
     .service('ContentService', function ($http, $window) {
+        var _thisService = this;
         this.url = 'http://api.national500apps.com/index.php?r=apiMenu/';
         this.appId = 140;
 
@@ -33,7 +34,7 @@ angular.module('starter.services', [])
         }
 
         this.getSubMenu = function (menuId) {
-            $http.post(this.url + 'GetSubMenu', {menu_id: menuId})
+            return $http.post(this.url + 'GetSubMenu', {menu_id: menuId})
                 .success(function (response) {
                     window.localStorage.setItem('submenu-' + menuId, JSON.stringify(response.Submenu))
                     console.log("Submenu, menuID: " + menuId, JSON.parse(window.localStorage.getItem('submenu-' + menuId)));
@@ -41,15 +42,19 @@ angular.module('starter.services', [])
         }
 
         this.update = function () {
-            var that = this;
-            that.getMenu()
+            _thisService.getMenu()
                 .then(function (response) {
-                    that.setMenu(response);
+                    _thisService.setMenu(response);
 
                     var menuItems = JSON.parse(window.localStorage.getItem('menu'));
-
+                    var count = 0;
                     for (var i = 0; i < menuItems.length; i++) {
-                        that.getSubMenu(menuItems[i].menu_id);
+                        _thisService.getSubMenu(menuItems[i].menu_id).then(function(){
+                            count++;
+                            if(count == menuItems.length){
+                                $window.location.reload(true);
+                            }
+                        });
                     }
                 })
         }
