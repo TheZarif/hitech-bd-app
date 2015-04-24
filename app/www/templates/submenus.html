@@ -1,5 +1,7 @@
 <ion-view view-title="{{menuItem.menu_name}}">
     <ion-content>
+        <div class="card" ng-if="menuItem.content!=null" ng-bind-html="menuItem.content | to_trusted">
+        </div>
         <ion-list>
             <ion-item ng-repeat="subMenuItem in subMenuItems" ng-click="selectItem(subMenuItem)" >
                 {{subMenuItem.submenu_name}}

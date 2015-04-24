@@ -30,7 +30,18 @@ angular.module('starter.services', [])
 
         this.setMenu = function (response) {
             window.localStorage.setItem('menu', JSON.stringify(response.data.Menu));
+            window.localStorage.setItem('home', JSON.stringify(setHome()));
             console.log("Menu: ", JSON.parse(window.localStorage.getItem('menu')));
+            console.log("Menu: ", JSON.parse(window.localStorage.getItem('home')));
+        }
+
+        function setHome(){
+            var menus = JSON.parse(window.localStorage.getItem('menu'));
+            for(var i=0; i<menus.length; i++){
+                if(menus[i].app_code == 0){
+                    return menus[i];
+                }
+            }
         }
 
         this.getSubMenu = function (menuId) {
@@ -41,7 +52,8 @@ angular.module('starter.services', [])
                 })
         }
 
-        this.update = function () {
+        this.update = function (success, failure) {
+            var s = success;
             _thisService.getMenu()
                 .then(function (response) {
                     _thisService.setMenu(response);
@@ -52,10 +64,13 @@ angular.module('starter.services', [])
                         _thisService.getSubMenu(menuItems[i].menu_id).then(function(){
                             count++;
                             if(count == menuItems.length){
-                                $window.location.reload(true);
+                                success({title: "Success!",template: "Successfully updated data"})
                             }
                         });
                     }
+                })
+                .catch(function () {
+                    failure({title: "Failed!",template: "Failed to get data. Please check your internet connection"});
                 })
         }
     });

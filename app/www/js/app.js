@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.filters'])
 
-    .run(function ($ionicPlatform, $http, ContentService) {
+    .run(function ($ionicPlatform, $http, ContentService, $ionicPopup, $window, $state) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -21,10 +21,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
         if (typeof(Storage) !== "undefined") {
             if (ifDataNotSet()) {
-                ContentService.update();
-                console.log("Data updated");
-                setDataSet();
+                ContentService.update(success, failure);
             }
+        }
+
+        function success(msg){
+            $ionicPopup.alert(msg)
+                .then(function () {
+                    setDataSet();
+                    $window.location.reload(true)
+                });
+        }
+
+        function failure(msg){
+            $ionicPopup.alert(msg);
+            $state.go('app.fail')
+
         }
 
         function ifDataNotSet(){
@@ -76,12 +88,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
-            .state('app.projects', {
-                url: "/projects",
+            .state('app.fail', {
+                url: "/fail",
                 'views': {
                     'menuContent': {
-                        templateUrl: "templates/projects.html",
-                        controller: 'ProjectsCtrl'
+                        templateUrl: "templates/fail.html",
+                        controller: 'AppCtrl'
                     }
                 }
             })
@@ -115,6 +127,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
+            .state('app.test', {
+                url: "/test",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates//kormokorta/choloman.html"
+                    }
+                }
+            })
+
             .state('app.single', {
                 url: "/playlists/:playlistId",
                 views: {
@@ -125,5 +146,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             });
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/content');
+        $urlRouterProvider.otherwise('/app/submenus/');
     });

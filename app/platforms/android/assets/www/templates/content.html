@@ -1,6 +1,6 @@
-<ion-view view-title="Content">
+<ion-view view-title="{{contentItem.submenu_name}}">
     <ion-content>
-        <span ng-bind-html="contentItem.content"></span>
+        <div ng-bind-html="contentItem.content | to_trusted">></div>
     </ion-content>
     <!--<ion-content ng-include="{{contentItem.content}}"></ion-content>-->
 </ion-view>

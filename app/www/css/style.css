@@ -6,11 +6,33 @@
 
 body {
     font-family: "Siyamrupali", serif;
+    text-align: justify;
 }
 
 ul {
     list-style: circle;
     padding: 10px;
     font-size: 14px;
+    text-align: justify;
+}
+
+table, td {
+    border: 1px solid gray;
+    margin: auto;
+}
+
+.blue {
+    color: blue;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.small {
+    font-size: small;
+}
+
+.justify {
     text-align: justify;
 }

@@ -1,9 +1,23 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, ContentService) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $window, ContentService, $ionicPopup) {
         $scope.menuItems = JSON.parse(window.localStorage.getItem('menu'));
+
+        if($scope.menuItems == null | undefined){
+            $scope.dataIsSet = false;
+        }
+        else{
+            $scope.dataIsSet = true;
+        }
         $scope.update = function () {
-            ContentService.update();
+            ContentService.update(success, success);
+            function success(msg){
+                $ionicPopup.alert(msg).then(function () {
+                    $scope.$broadcast('scroll.refreshComplete');
+                    $window.location.reload(true);
+                })
+
+            }
         }
 
     })
@@ -16,11 +30,12 @@ angular.module('starter.controllers', [])
         }
 
         $scope.menuId = $stateParams.menuId;
+        if($scope.menuId == "" | null | undefined){
+            $scope.menuId = JSON.parse(window.localStorage.getItem('home')).menu_id;
+        }
         $scope.menuItem = ContentService.getMenuItem($scope.menuId);
         console.log($scope.menuItem)
-        if($scope.menuItem.has_submenu==0){
-            $scope.selectItem($scope.menuItem);
-        }
+
         $scope.subMenuItems = JSON.parse(window.localStorage.getItem('submenu-' + $scope.menuId));
     })
 
