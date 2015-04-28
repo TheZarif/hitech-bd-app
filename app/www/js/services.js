@@ -30,12 +30,12 @@ angular.module('starter.services', [])
 
         this.setMenu = function (response) {
             window.localStorage.setItem('menu', JSON.stringify(response.data.Menu));
-            window.localStorage.setItem('home', JSON.stringify(setHome()));
+            window.localStorage.setItem('home', JSON.stringify(_thisService.setHome()));
             console.log("Menu: ", JSON.parse(window.localStorage.getItem('menu')));
             console.log("Menu: ", JSON.parse(window.localStorage.getItem('home')));
         }
 
-        function setHome(){
+        this.setHome = function(){
             var menus = JSON.parse(window.localStorage.getItem('menu'));
             for(var i=0; i<menus.length; i++){
                 if(menus[i].app_code == 0){
@@ -67,6 +67,7 @@ angular.module('starter.services', [])
                                 success({title: "Success!",template: "Successfully updated data"})
                             }
                         });
+                        
                     }
                 })
                 .catch(function () {

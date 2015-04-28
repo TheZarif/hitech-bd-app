@@ -11,7 +11,10 @@ D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\drawable
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\drawable-port-ldpi\screen.png \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\drawable-port-mdpi\screen.png \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\drawable-port-xhdpi\screen.png \
+D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\drawable-port-xxhdpi\screen.png \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\drawable-xhdpi\icon.png \
+D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\drawable-xxhdpi\icon.png \
+D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\drawable-xxxhdpi\icon.png \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\values\strings.xml \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\res\xml\config.xml \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\res\drawable\icon.png \
@@ -26,5 +29,8 @@ D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\re
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\res\drawable-port-ldpi\screen.png \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\res\drawable-port-mdpi\screen.png \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\res\drawable-port-xhdpi\screen.png \
+D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\res\drawable-port-xxhdpi\screen.png \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\res\drawable-xhdpi\icon.png \
+D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\res\drawable-xxhdpi\icon.png \
+D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\res\drawable-xxxhdpi\icon.png \
 D:\Projects\ionic-app-master\ionic-app-master\app\platforms\android\ant-build\AndroidManifest.xml \

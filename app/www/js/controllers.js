@@ -30,7 +30,8 @@ angular.module('starter.controllers', [])
         }
 
         $scope.menuId = $stateParams.menuId;
-        if($scope.menuId == "" | null | undefined){
+        console.log(JSON.parse(window.localStorage.getItem('menu')))
+        if($scope.menuId == "" | null | undefined && JSON.parse(window.localStorage.getItem('home'))!= null){
             $scope.menuId = JSON.parse(window.localStorage.getItem('home')).menu_id;
         }
         $scope.menuItem = ContentService.getMenuItem($scope.menuId);
@@ -39,8 +40,13 @@ angular.module('starter.controllers', [])
         $scope.subMenuItems = JSON.parse(window.localStorage.getItem('submenu-' + $scope.menuId));
     })
 
-    .controller('ContentController', function ($scope, ContentService) {
+    .controller('ContentController', function ($scope, ContentService, $state) {
         $scope.contentItem = ContentService.selectedItem;
+        console.log()
+        if(!$scope.contentItem.content){
+            console.log('here')
+            $state.go('app.submenus')
+        }
 
     })
 
