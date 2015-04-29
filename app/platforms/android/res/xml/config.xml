@@ -31,4 +31,8 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
+    <access launch-external="yes" origin="tel:*" />
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
 </widget>

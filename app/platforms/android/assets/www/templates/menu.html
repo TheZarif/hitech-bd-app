@@ -26,6 +26,12 @@
         <ion-item ng-if="menuItem.active!=0" ng-repeat="menuItem in menuItems" nav-clear menu-close href="#/app/submenus/{{menuItem.menu_id}}">
           {{menuItem.menu_name}}
         </ion-item>
+        <ion-item nav-clear menu-close href="#/app/map">
+          লোকেশন
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/test">
+          test
+        </ion-item>
 
       </ion-list>
     </ion-content>

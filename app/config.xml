@@ -36,4 +36,6 @@
     <splash src="resources\android\splash\drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
   </platform>
   <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
+
+  <access origin="tel:*" launch-external="yes" />
 </widget>

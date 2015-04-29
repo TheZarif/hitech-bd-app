@@ -67,6 +67,7 @@ angular.module('starter.services', [])
                                 success({title: "Success!",template: "Successfully updated data"})
                             }
                         });
+                        
                     }
                 })
                 .catch(function () {

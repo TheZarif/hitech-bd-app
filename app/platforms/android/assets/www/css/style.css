@@ -44,3 +44,8 @@ table, td {
 .justify {
     text-align: justify;
 }
+
+.myStyle {
+    font-size: 20px;
+    padding: 15px;
+}

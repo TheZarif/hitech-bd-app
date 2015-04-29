@@ -28,8 +28,19 @@ angular.module('starter.services', [])
             return $http.post(this.url + 'Getmenu', {'app_id': this.appId})
         }
 
+        function compare(a,b) {
+            if (a.app_code < b.app_code)
+                return -1;
+            if (a.app_code > b.app_code)
+                return 1;
+            return 0;
+        }
+
         this.setMenu = function (response) {
-            window.localStorage.setItem('menu', JSON.stringify(response.data.Menu));
+
+            var menu = response.data.Menu.sort(compare);
+
+            window.localStorage.setItem('menu', JSON.stringify(menu));
             window.localStorage.setItem('home', JSON.stringify(_thisService.setHome()));
             console.log("Menu: ", JSON.parse(window.localStorage.getItem('menu')));
             console.log("Menu: ", JSON.parse(window.localStorage.getItem('home')));

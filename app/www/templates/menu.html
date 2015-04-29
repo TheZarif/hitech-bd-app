@@ -14,18 +14,29 @@
 
   <ion-side-menu side="left" ng-if="dataIsSet">
     <ion-header-bar class="bar-balanced">
-      <h1 class="title">মেনু</h1>
+      <h1 class="title">হাই টেক পার্ক বাংলাদেশ</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
         <ion-refresher
+                class="yellowgreen"
                 pulling-text="আপডেট করতে নিচে টানুন..."
                 on-refresh="update()">
         </ion-refresher>
+        <ion-item class="yellowgreen" nav-clear menu-close ng-click="update()">
+          আপডেট
+        </ion-item>
 
         <ion-item ng-if="menuItem.active!=0" ng-repeat="menuItem in menuItems" nav-clear menu-close href="#/app/submenus/{{menuItem.menu_id}}">
           {{menuItem.menu_name}}
         </ion-item>
+        <ion-item nav-clear menu-close href="#/app/map">
+          লোকেশন
+        </ion-item>
+
+        <!--<ion-item nav-clear menu-close href="#/app/test">-->
+          <!--test-->
+        <!--</ion-item>-->
 
       </ion-list>
     </ion-content>
