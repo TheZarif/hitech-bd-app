@@ -11,6 +11,7 @@ body {
 
 p {
     padding: 10px;
+    font-size: 15px;
 }
 
 ul, ol {
@@ -48,4 +49,11 @@ table, td {
 .myStyle {
     font-size: 20px;
     padding: 15px;
+}
+
+.yellowgreen{
+    background-color: greenyellow;
+    border: none;
+    color: tomato;
+    text-align: center;
 }

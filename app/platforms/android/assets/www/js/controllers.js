@@ -67,8 +67,8 @@ angular.module('starter.controllers', [])
     .controller('MapCtrl', function () {
 
         var locations = [
-            ['<strong>Hi-Tech Bangla (Bangladesh) Ltd.</strong><br> 69/1 Panthapath Dhaka 1205', 23.750456,90.387821,17]
-            //['Coogee Beach', -33.923036, 151.259052, 5],
+            ['<strong>Hi-Tech Bangla (Bangladesh) Ltd.</strong><br> 69/1 Panthapath Dhaka 1205', 23.750456,90.387821,17],
+            ['<strong>Kaliakair Hi Tech Park</strong><br> Dhaka - Tangail Hwy', 24.0608248,90.2281668,17]
             //['Cronulla Beach', -34.028249, 151.157507, 3],
             //['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
             //['Maroubra Beach', -33.950198, 151.259302, 1]

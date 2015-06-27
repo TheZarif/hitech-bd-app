@@ -8,6 +8,7 @@ angular.module('starter.services', [])
         this.url = 'http://api.national500apps.com/index.php?r=apiMenu/';
         this.appId = 140;
 
+
         this.selectedItem = {}
 
         this.setSelectedItem = function (item) {
